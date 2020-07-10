@@ -1,6 +1,6 @@
 <?php 
     include 'includes/config.php';
-    include 'includes/connexion_form.php';
+    include 'includes/inscription_form.php';
 
     // get db users
     $query = $pdo->query('SELECT * FROM users');

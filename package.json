@@ -19,5 +19,11 @@
     "gulp-sass-glob": "^1.0.8",
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^2.0.1"
-  }
+  },
+  "description": "Application web permettant de gérer du stock de produit",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": ""
 }
