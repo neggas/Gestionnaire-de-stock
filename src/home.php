@@ -28,6 +28,7 @@ $products = $query->fetchAll();
         <li><a href="./home.php">Accueil</a></li>
         <li><a href="./ajouter.php">Ajouter produits</a></li>
         <li><a href="./vente.php">Vendre un poduit</a></li>
+        <li><a href="./inventaire.php">Consulter l'inventaire</a></li>
         <li class="deconnexion"><a href="./deco.php">Déconnexion</a></li>
     </header>
     <div class="content-title">
