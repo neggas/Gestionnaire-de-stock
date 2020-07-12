@@ -1,15 +1,15 @@
-<?php 
-    include 'includes/connexion_form.php';
-    session_start();
-    if (empty($_SESSION['pseudo'])) {
-        header('Location: ./connexion.php');
-    }
+<?php
+include 'includes/connexion_form.php';
+session_start();
+if (empty($_SESSION['pseudo'])) {
+    header('Location: ./connexion.php');
+}
 
-    include 'includes/config.php';
+include 'includes/config.php';
 
-    // get db users
-    $query = $pdo->query('SELECT * FROM product');
-    $products = $query->fetchAll();
+// get db users
+$query = $pdo->query('SELECT * FROM product');
+$products = $query->fetchAll();
 
 ?>
 <!doctype html>
@@ -32,7 +32,7 @@
     <div class="content-title">
         <h2 class="title-enter">Vos produits</h2>
         <div class="content-product">
-            <?php foreach($products as $_product){ ?>
+            <?php foreach ($products as $_product) { ?>
                 <div class="box-product">
                     <img class="img-product" src="<?= $_product->image ?>" alt="image manquante">
                     <div class="info-product">
@@ -40,7 +40,12 @@
                         <div class="ref">Ref : <?= $_product->ref ?></div>
                         <div class="amount">Quantité : <?= $_product->amount ?></div>
                         <div class="price_ttc">Prix TTC : <?= $_product->price_ttc ?> €</div>
-                        <a href="afficher.php?name=<?=$_product->name?>"><div class="show_hover">Afficher</div></a>
+                        <a href="afficher.php?name=<?= $_product->name ?>">
+                            <div class="show_hover">Afficher</div>
+                        </a>
+                        <a href="vente.php?name=<?= $_product->name ?>">
+                            <div class="sell_product">Vendre</div>
+                        </a>
                     </div>
                 </div>
             <?php } ?>

@@ -4,7 +4,7 @@
 define('DB_HOST','localhost');
 define('DB_NAME','gestion_app');
 define('DB_USER','root');
-define('DB_PASS','02491383Ro'); // '' par défaut sur windows
+define('DB_PASS',''); // '' par défaut sur windows
 
 try
 {
