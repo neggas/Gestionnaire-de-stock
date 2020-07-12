@@ -20,6 +20,7 @@ $products = $query->fetchAll();
     <title>GestionApp - Home</title>
     <link rel="stylesheet" href="assets/css/app.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300i,400,500" rel="stylesheet">
+
 </head>
 
 <body>
