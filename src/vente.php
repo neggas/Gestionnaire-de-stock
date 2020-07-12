@@ -8,7 +8,6 @@ if (empty($_SESSION['pseudo'])) {
 include 'includes/config.php';
 include 'includes/vente.php';
 
-$name = $_GET['name'];
 // get db product
 $query = $pdo->query('SELECT name FROM product');
 $product_infos = $query->fetchAll();

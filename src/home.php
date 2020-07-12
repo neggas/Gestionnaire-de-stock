@@ -27,6 +27,7 @@ $products = $query->fetchAll();
         <li>Bonjour <b><?= $_SESSION['pseudo'] ?></b></li>
         <li><a href="./home.php">Accueil</a></li>
         <li><a href="./ajouter.php">Ajouter produits</a></li>
+        <li><a href="./vente.php">Vendre un poduit</a></li>
         <li class="deconnexion"><a href="./deco.php">Déconnexion</a></li>
     </header>
     <div class="content-title">
@@ -42,9 +43,6 @@ $products = $query->fetchAll();
                         <div class="price_ttc">Prix TTC : <?= $_product->price_ttc ?> €</div>
                         <a href="afficher.php?name=<?= $_product->name ?>">
                             <div class="show_hover">Afficher</div>
-                        </a>
-                        <a href="vente.php?name=<?= $_product->name ?>">
-                            <div class="sell_product">Vendre</div>
                         </a>
                     </div>
                 </div>
