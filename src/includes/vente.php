@@ -47,9 +47,12 @@ if (isset($vendre)) {
 
         date_default_timezone_set('Africa/Abidjan');
 
-        $prepare = $pdo->prepare('INSERT INTO inventory(actions, product, amount, dates) 
-		    	VALUES(?, ?, ?, NOW())');
-        $prepare->execute(array($action, $produit, $amount));
+        $prepare = $pdo->prepare('INSERT INTO inventory(actions, product, amount, dates,user_name) 
+		    	VALUES(?, ?, ?, NOW(),?)');
+        $prepare->execute(array($action, $produit, $amount, $_SESSION['pseudo']));
+
+
+
 
         header("Location: ./inventaire.php");
     }

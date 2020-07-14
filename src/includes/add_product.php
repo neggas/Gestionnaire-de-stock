@@ -1,6 +1,6 @@
 <?php
-$error_messages = array();
 
+$error_messages = array();
 if ((isset($_POST['formadd']))) {
 	//Get _POST
 	$name = htmlspecialchars($_POST['name']);
@@ -61,7 +61,7 @@ if ((isset($_POST['formadd']))) {
 		$resultat = move_uploaded_file($_FILES['image_upload']['tmp_name'], $img_name);
 
 		// Send db
-		$req_product = $pdo->prepare("INSERT INTO product (name, ref, amount, price_ht, price_ttc, notes, image) VALUES(:name, :ref, :amount, :price_ht, :price_ttc, :notes, :image)");
+		$req_product = $pdo->prepare("INSERT INTO product (name, ref, amount, price_ht, price_ttc, notes, image,user_name) VALUES(:name, :ref, :amount, :price_ht, :price_ttc, :notes, :image, :user_name)");
 		$req_product->bindValue('name', $name);
 		$req_product->bindValue('ref', $ref);
 		$req_product->bindValue('amount', $amount);
@@ -69,18 +69,18 @@ if ((isset($_POST['formadd']))) {
 		$req_product->bindValue('price_ttc', $price_ttc);
 		$req_product->bindValue('notes', $notes);
 		$req_product->bindValue('image', $img_name);
+		$req_product->bindValue('user_name', $_SESSION['pseudo']);
 		$req_product->execute() or die('Erreur, recommencer la requéte');
 
 
 		//add to inventory
-
 		$action = "ajout";
 		$produit = $name;
 		$amount = $amount;
 
-		$prepare = $pdo->prepare('INSERT INTO inventory(actions, product, amount, dates) 
-		    	VALUES(?, ?, ?, NOW())');
-		$prepare->execute(array($action, $produit, $amount));
+		$prepare = $pdo->prepare('INSERT INTO inventory(actions, product, amount, user_name, dates) 
+		    	VALUES(?, ?, ?, ?, NOW())');
+		$prepare->execute(array($action, $produit, $amount, $_SESSION['pseudo']));
 
 		header('Location: ./home.php');
 	}

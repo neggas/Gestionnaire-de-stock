@@ -8,7 +8,11 @@ if (empty($_SESSION['pseudo'])) {
 include 'includes/config.php';
 
 // get db users
-$query = $pdo->query('SELECT * FROM product');
+
+$query = $pdo->prepare("SELECT * FROM product WHERE user_name=:user_name");
+$query->bindValue('user_name', $_SESSION['pseudo']);
+$query->execute();
+
 $products = $query->fetchAll();
 
 ?>

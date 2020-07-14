@@ -9,7 +9,10 @@ include 'includes/config.php';
 include 'includes/vente.php';
 
 // get db product
-$query = $pdo->query('SELECT name FROM product');
+$query = $pdo->prepare("SELECT * FROM product WHERE user_name=:user_name");
+$query->bindValue('user_name', $_SESSION['pseudo']);
+$query->execute();
+
 $product_infos = $query->fetchAll();
 
 ?>

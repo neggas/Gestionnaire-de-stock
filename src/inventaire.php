@@ -11,7 +11,10 @@ include 'includes/config.php';
 
 
 // get db product
-$query = $pdo->query('SELECT * FROM inventory');
+$query = $pdo->prepare("SELECT * FROM inventory WHERE user_name=:user_name");
+$query->bindValue('user_name', $_SESSION['pseudo']);
+$query->execute();
+
 $inventory = $query->fetchAll();
 ?>
 
@@ -26,27 +29,31 @@ $inventory = $query->fetchAll();
 
 <body>
     <h1>Inventaire des transaction</h1>
+    <?php if (empty($inventory)) { ?>
+        <h1>Votre inventaire est vide !</h1>
+    <?php } else { ?>
+        <div id="table-content">
+            <table id="inventory-table" class="table-content-tb">
+                <th>id</th>
+                <th>Action</th>
+                <th>Produit</th>
+                <th>nombre</th>
+                <th>date</th>
 
-    <div id="table-content">
-        <table id="inventory-table" class="table-content-tb">
-            <th>id</th>
-            <th>Action</th>
-            <th>Produit</th>
-            <th>nombre</th>
-            <th>date</th>
+                <?php foreach ($inventory as $invt) { ?>
+                    <tr>
+                        <td><?= $invt->id; ?></td>
+                        <td><?= $invt->actions; ?></td>
+                        <td><?= $invt->product; ?></td>
+                        <td><?= $invt->amount; ?></td>
+                        <td><?= $invt->dates; ?></td>
+                    </tr>
 
-            <?php foreach ($inventory as $invt) { ?>
-                <tr>
-                    <td><?= $invt->id; ?></td>
-                    <td><?= $invt->actions; ?></td>
-                    <td><?= $invt->product; ?></td>
-                    <td><?= $invt->amount; ?></td>
-                    <td><?= $invt->dates; ?></td>
-                </tr>
+                <?php }; ?>
+            </table>
+        </div>
+    <?php }; ?>
 
-            <?php }; ?>
-        </table>
-    </div>
 
     <div class="home">
         <a href="./home.php">Retour</a>
